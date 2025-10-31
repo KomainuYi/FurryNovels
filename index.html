@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>万圣节恐怖挑战</title>
+    <title>万圣节规则怪谈</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎃</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Eater&display=swap" rel="stylesheet">
     <style>
@@ -661,7 +661,7 @@
                 <span>🎃</span> 万圣节特别版
             </div>
             <h1>恐怖知识挑战</h1>
-            <p class="description">你敢接受这个恐怖挑战吗？共5道惊悚题目</p>
+            <p class="description">嘿嘿~人类被本雾影大人抓到了吧，要是答不对，就把你变成同类！</p>
         </header>
         
         <div class="progress-container">
@@ -1014,13 +1014,13 @@
             
             // 根据得分显示不同消息
             if (score === questions.length) {
-                resultMessageEl.textContent = "太可怕了！你得了满分！你对恐怖知识了如指掌！";
+                resultMessageEl.textContent = "可恶怎么全答对了，呜呜~战败了~";
             } else if (score >= questions.length * 0.7) {
-                resultMessageEl.textContent = "令人毛骨悚然！你对恐怖传说很有研究！";
+                resultMessageEl.textContent = "呜哇，人类好厉害";
             } else if (score >= questions.length * 0.5) {
-                resultMessageEl.textContent = "还不错！但你需要更多的恐怖知识来应对万圣节！";
+                resultMessageEl.textContent = "嗷呜~（朝你扑来）";
             } else {
-                resultMessageEl.textContent = "别害怕！多了解一些恐怖传说，下次会更好！";
+                resultMessageEl.textContent = "（慢慢靠近）嘿嘿,放轻松，我很快就结束";
             }
             
             // 显示答题详情
