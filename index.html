@@ -3,117 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>知识问答挑战 - GitHub部署版</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❓</text></svg>">
+    <title>万圣节恐怖挑战</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎃</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Eater&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #6a11cb;
-            --secondary: #2575fc;
-            --success: #4CAF50;
-            --danger: #f44336;
-            --warning: #ff9800;
-            --light: #f8f9fa;
-            --dark: #343a40;
+            --dark: #0a0a0a;
+            --blood: #8b0000;
+            --pumpkin: #ff8c00;
+            --purple: #4a0049;
+            --green: #00ff41;
+            --gray: #2a2a2a;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: #333;
+            background-color: var(--dark);
+            color: #f0f0f0;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 40px 20px;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+             background-image: url('image/mere.jpg');
+            background-size: cover;
+            background-position: center;
+           background-attachment: fixed;
+          position: relative;
+           
         }
         
-        .container {
+        /* 蜘蛛网效果 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 800px;
-            background-color: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            animation: fadeIn 0.8s ease;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 10%, transparent 50%, rgba(255,255,255,0.03) 80%),
+                radial-gradient(circle at 90% 90%, transparent 50%, rgba(255,255,255,0.03) 80%);
+            pointer-events: none;
+            z-index: -1;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* 飘浮的幽灵 */
+        .ghost {
+            position: fixed;
+            width: 50px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50% 50% 0 0;
+            animation: float 15s infinite linear;
+            z-index: -1;
+            opacity: 0.4;
+        }
+        
+        .ghost::before, .ghost::after {
+            content: "";
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            top: 20px;
+        }
+        
+        .ghost::before {
+            left: 5px;
+        }
+        
+        .ghost::after {
+            right: 5px;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(100px, 100px) rotate(90deg); }
+            50% { transform: translate(200px, 50px) rotate(180deg); }
+            75% { transform: translate(100px, -50px) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+        
+    .container {
+    width: 100%;
+    max-width: 800px;
+    /* 增加背景透明度，使背景图片更明显 */
+    background-color: rgba(20, 20, 20, 0.7); /* 将0.9改为0.7 */
+    /* 其余样式保持不变 */
+}
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 20px rgba(139, 0, 0, 0.5); }
+            50% { box-shadow: 0 0 30px rgba(139, 0, 0, 0.8), 0 0 40px rgba(255, 140, 0, 0.4); }
+            100% { box-shadow: 0 0 20px rgba(139, 0, 0, 0.5); }
         }
         
         header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
+            background: linear-gradient(to right, var(--purple), var(--blood));
             color: white;
             padding: 30px;
             text-align: center;
             position: relative;
             overflow: hidden;
+            border-bottom: 2px solid var(--pumpkin);
         }
         
         header::before {
             content: "";
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: pulse 8s infinite linear;
-        }
-        
-        @keyframes pulse {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 140, 0, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 0, 0, 0.3) 0%, transparent 50%);
         }
         
         h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 10px;
-            position: relative;
+            font-family: 'Creepster', cursive;
+            text-shadow: 3px 3px 0 #000, 5px 5px 10px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+            color: var(--pumpkin);
         }
         
         .description {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             opacity: 0.9;
-            position: relative;
+            font-family: 'Eater', cursive;
+            letter-spacing: 1px;
         }
         
-        .github-badge {
+        .halloween-badge {
             position: absolute;
             top: 15px;
             right: 15px;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 5px 10px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 8px 15px;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
+            border: 1px solid var(--pumpkin);
+            font-family: 'Eater', cursive;
         }
         
         .progress-container {
             padding: 20px 30px;
-            background-color: var(--light);
-            border-bottom: 1px solid #eaeaea;
+            background-color: rgba(42, 42, 42, 0.8);
+            border-bottom: 1px solid var(--blood);
         }
         
         .progress-bar {
-            height: 10px;
-            background-color: #e0e0e0;
-            border-radius: 5px;
+            height: 12px;
+            background-color: var(--dark);
+            border-radius: 6px;
             overflow: hidden;
+            border: 1px solid var(--pumpkin);
+            box-shadow: 0 0 5px rgba(255, 140, 0, 0.5);
         }
         
         .progress {
             height: 100%;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
+            background: linear-gradient(to right, var(--blood), var(--pumpkin));
             width: 0%;
             transition: width 0.5s ease;
         }
@@ -123,6 +187,8 @@
             justify-content: space-between;
             margin-top: 10px;
             font-weight: 500;
+            font-family: 'Eater', cursive;
+            letter-spacing: 1px;
         }
         
         .quiz-container {
@@ -130,30 +196,45 @@
         }
         
         .question-card {
-            background-color: white;
-            border-radius: 15px;
+            background-color: rgba(30, 30, 30, 0.9);
+            border-radius: 10px;
             padding: 25px;
             margin-bottom: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            border: 1px solid #f0f0f0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--purple);
             display: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .question-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--blood), var(--pumpkin));
         }
         
         .question-card.active {
             display: block;
-            animation: slideIn 0.5s ease;
+            animation: spookyAppear 0.8s ease;
         }
         
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(20px); }
-            to { opacity: 1; transform: translateX(0); }
+        @keyframes spookyAppear {
+            0% { opacity: 0; transform: translateY(20px) scale(0.95); }
+            50% { transform: translateY(-5px) scale(1.02); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
         }
         
         .question-number {
-            font-size: 0.9rem;
-            color: var(--primary);
+            font-size: 1rem;
+            color: var(--pumpkin);
             font-weight: 600;
             margin-bottom: 5px;
+            font-family: 'Eater', cursive;
+            letter-spacing: 1px;
         }
         
         .question-text {
@@ -161,6 +242,8 @@
             font-weight: 600;
             margin-bottom: 20px;
             line-height: 1.4;
+            color: #f0f0f0;
+            text-shadow: 1px 1px 2px #000;
         }
         
         .options {
@@ -171,60 +254,81 @@
         
         .option {
             padding: 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
+            border: 2px solid var(--gray);
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
+            background-color: rgba(42, 42, 42, 0.7);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .option::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 140, 0, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .option:hover::before {
+            left: 100%;
         }
         
         .option:hover {
-            border-color: var(--primary);
-            background-color: #f8f6ff;
-            transform: translateY(-2px);
+            border-color: var(--pumpkin);
+            background-color: rgba(60, 60, 60, 0.7);
+            transform: translateX(5px);
         }
         
         .option.selected {
-            border-color: var(--primary);
-            background-color: #eef2ff;
+            border-color: var(--blood);
+            background-color: rgba(139, 0, 0, 0.2);
+            box-shadow: 0 0 10px rgba(139, 0, 0, 0.5);
         }
         
         .option.correct {
-            border-color: var(--success);
-            background-color: #e8f5e9;
+            border-color: var(--green);
+            background-color: rgba(0, 100, 0, 0.2);
         }
         
         .option.incorrect {
-            border-color: var(--danger);
-            background-color: #ffebee;
+            border-color: var(--blood);
+            background-color: rgba(139, 0, 0, 0.2);
         }
         
         .option-label {
             display: inline-block;
             width: 30px;
             height: 30px;
-            background-color: #f0f0f0;
+            background-color: var(--gray);
             border-radius: 50%;
             text-align: center;
             line-height: 30px;
             margin-right: 15px;
             font-weight: 600;
             transition: all 0.3s ease;
+            border: 1px solid #555;
         }
         
         .option.selected .option-label {
-            background-color: var(--primary);
+            background-color: var(--blood);
             color: white;
+            box-shadow: 0 0 8px rgba(139, 0, 0, 0.8);
         }
         
         .option.correct .option-label {
-            background-color: var(--success);
-            color: white;
+            background-color: var(--green);
+            color: black;
         }
         
         .option.incorrect .option-label {
-            background-color: var(--danger);
+            background-color: var(--blood);
             color: white;
         }
         
@@ -242,15 +346,37 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-family: 'Eater', cursive;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        button:hover::before {
+            left: 100%;
         }
         
         .btn-prev {
-            background-color: var(--light);
-            color: var(--dark);
+            background-color: var(--gray);
+            color: #ccc;
+            border: 1px solid #555;
         }
         
         .btn-prev:hover:not(:disabled) {
-            background-color: #e9ecef;
+            background-color: #444;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
         .btn-prev:disabled {
@@ -259,14 +385,15 @@
         }
         
         .btn-next {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
+            background: linear-gradient(to right, var(--blood), var(--pumpkin));
             color: white;
+            border: 1px solid var(--pumpkin);
         }
         
         .btn-next:hover:not(:disabled) {
             opacity: 0.9;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.5);
         }
         
         .btn-next:disabled {
@@ -275,35 +402,61 @@
         }
         
         .btn-submit {
-            background: linear-gradient(to right, var(--success), #45a049);
+            background: linear-gradient(to right, var(--purple), var(--blood));
             color: white;
+            border: 1px solid var(--purple);
         }
         
         .btn-submit:hover {
             opacity: 0.9;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(74, 0, 73, 0.5);
         }
         
         .result-container {
             display: none;
             text-align: center;
             padding: 40px;
+            background-color: rgba(20, 20, 20, 0.95);
+            border-radius: 10px;
+            margin: 20px;
+            border: 1px solid var(--blood);
+            box-shadow: 0 0 20px rgba(139, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .result-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 140, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(139, 0, 0, 0.1) 0%, transparent 50%);
+            z-index: -1;
         }
         
         .result-title {
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: 20px;
-            color: var(--dark);
+            color: var(--pumpkin);
+            font-family: 'Creepster', cursive;
+            text-shadow: 2px 2px 0 #000;
+            letter-spacing: 2px;
         }
         
         .score {
             font-size: 4rem;
             font-weight: 700;
-            color: var(--primary);
+            color: var(--blood);
             margin: 20px 0;
             position: relative;
             display: inline-block;
+            font-family: 'Creepster', cursive;
+            text-shadow: 3px 3px 0 #000;
         }
         
         .score::after {
@@ -313,33 +466,40 @@
             left: 10%;
             width: 80%;
             height: 5px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
+            background: linear-gradient(to right, var(--blood), var(--pumpkin));
             border-radius: 5px;
         }
         
         .result-message {
             font-size: 1.2rem;
             margin-bottom: 30px;
-            color: #666;
+            color: #ccc;
             line-height: 1.6;
+            font-family: 'Eater', cursive;
+            letter-spacing: 1px;
         }
         
         .result-details {
-            background-color: var(--light);
+            background-color: rgba(42, 42, 42, 0.7);
             border-radius: 10px;
             padding: 20px;
             margin: 20px 0;
             text-align: left;
+            border: 1px solid var(--purple);
         }
         
         .result-details h3 {
             margin-bottom: 15px;
-            color: var(--dark);
+            color: var(--pumpkin);
+            font-family: 'Eater', cursive;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--pumpkin);
+            padding-bottom: 5px;
         }
         
         .result-item {
             padding: 10px 0;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid #444;
             display: flex;
             justify-content: space-between;
         }
@@ -349,33 +509,105 @@
         }
         
         .btn-restart {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
+            background: linear-gradient(to right, var(--blood), var(--pumpkin));
             color: white;
             margin-top: 20px;
             padding: 12px 30px;
+            border: 1px solid var(--pumpkin);
         }
         
         .btn-restart:hover {
             opacity: 0.9;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.5);
         }
         
         footer {
             text-align: center;
             padding: 20px;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.5);
             font-size: 0.9rem;
             margin-top: 20px;
+            font-family: 'Eater', cursive;
+            letter-spacing: 1px;
         }
         
         footer a {
-            color: white;
+            color: var(--pumpkin);
             text-decoration: none;
         }
         
         footer a:hover {
             text-decoration: underline;
+        }
+        
+        /* 万圣节装饰元素 */
+        .pumpkin {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            background: var(--pumpkin);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.7;
+            animation: float 20s infinite linear;
+        }
+        
+        .pumpkin::before, .pumpkin::after {
+            content: "";
+            position: absolute;
+            background: #000;
+            border-radius: 50%;
+            width: 10px;
+            height: 10px;
+            top: 10px;
+        }
+        
+        .pumpkin::before {
+            left: 8px;
+        }
+        
+        .pumpkin::after {
+            right: 8px;
+        }
+        
+        .bat {
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            background: #000;
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.6;
+            animation: fly 25s infinite linear;
+        }
+        
+        .bat::before, .bat::after {
+            content: "";
+            position: absolute;
+            background: #000;
+            width: 20px;
+            height: 10px;
+            border-radius: 50% 50% 0 0;
+            top: -5px;
+        }
+        
+        .bat::before {
+            left: -10px;
+            transform: rotate(-30deg);
+        }
+        
+        .bat::after {
+            right: -10px;
+            transform: rotate(30deg);
+        }
+        
+        @keyframes fly {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(150px, 100px) rotate(90deg); }
+            50% { transform: translate(300px, 50px) rotate(180deg); }
+            75% { transform: translate(150px, -50px) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
         }
         
         @media (max-width: 600px) {
@@ -388,7 +620,7 @@
             }
             
             h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
             .quiz-container {
@@ -415,16 +647,21 @@
     </style>
 </head>
 <body>
+    <!-- 万圣节装饰元素 -->
+    <div class="ghost" style="top: 10%; left: 5%;"></div>
+    <div class="ghost" style="top: 60%; left: 80%;"></div>
+    <div class="pumpkin" style="top: 20%; left: 80%;"></div>
+    <div class="pumpkin" style="top: 70%; left: 10%;"></div>
+    <div class="bat" style="top: 30%; left: 20%;"></div>
+    <div class="bat" style="top: 80%; left: 70%;"></div>
+    
     <div class="container">
         <header>
-            <div class="github-badge">
-                <svg height="16" viewBox="0 0 16 16" width="16" fill="currentColor">
-                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
-                </svg>
-                GitHub Pages
+            <div class="halloween-badge">
+                <span>🎃</span> 万圣节特别版
             </div>
-            <h1>知识问答挑战</h1>
-            <p class="description">测试你的知识水平，共5道题目</p>
+            <h1>恐怖知识挑战</h1>
+            <p class="description">你敢接受这个恐怖挑战吗？共5道惊悚题目</p>
         </header>
         
         <div class="progress-container">
@@ -440,120 +677,120 @@
         <div class="quiz-container">
             <!-- 题目1 -->
             <div class="question-card active" id="question-1">
-                <div class="question-number">问题 1</div>
-                <div class="question-text">HTML是什么的缩写？</div>
+                <div class="question-number">恐怖问题 1</div>
+                <div class="question-text">在万圣节传说中，哪种生物害怕大蒜和十字架？</div>
                 <div class="options">
                     <div class="option" data-value="A">
                         <span class="option-label">A</span>
-                        <span class="option-text">超文本标记语言</span>
+                        <span class="option-text">狼人</span>
                     </div>
                     <div class="option" data-value="B">
                         <span class="option-label">B</span>
-                        <span class="option-text">高性能传输模块</span>
+                        <span class="option-text">吸血鬼</span>
                     </div>
                     <div class="option" data-value="C">
                         <span class="option-label">C</span>
-                        <span class="option-text">高级文本管理器</span>
+                        <span class="option-text">僵尸</span>
                     </div>
                     <div class="option" data-value="D">
                         <span class="option-label">D</span>
-                        <span class="option-text">主页标记语言</span>
+                        <span class="option-text">女巫</span>
                     </div>
                 </div>
             </div>
             
             <!-- 题目2 -->
             <div class="question-card" id="question-2">
-                <div class="question-number">问题 2</div>
-                <div class="question-text">CSS的主要作用是什么？</div>
+                <div class="question-number">恐怖问题 2</div>
+                <div class="question-text">"Trick or Treat" 在万圣节的传统含义是什么？</div>
                 <div class="options">
                     <div class="option" data-value="A">
                         <span class="option-label">A</span>
-                        <span class="option-text">定义网页内容</span>
+                        <span class="option-text">不给糖就捣蛋</span>
                     </div>
                     <div class="option" data-value="B">
                         <span class="option-label">B</span>
-                        <span class="option-text">控制网页样式和布局</span>
+                        <span class="option-text">魔法或恶作剧</span>
                     </div>
                     <div class="option" data-value="C">
                         <span class="option-label">C</span>
-                        <span class="option-text">添加交互功能</span>
+                        <span class="option-text">糖果或诅咒</span>
                     </div>
                     <div class="option" data-value="D">
                         <span class="option-label">D</span>
-                        <span class="option-text">存储数据</span>
+                        <span class="option-text">面具或惊吓</span>
                     </div>
                 </div>
             </div>
             
             <!-- 题目3 -->
             <div class="question-card" id="question-3">
-                <div class="question-number">问题 3</div>
-                <div class="question-text">JavaScript主要用于什么？</div>
+                <div class="question-number">恐怖问题 3</div>
+                <div class="question-text">万圣节起源于哪个古老民族的节日？</div>
                 <div class="options">
                     <div class="option" data-value="A">
                         <span class="option-label">A</span>
-                        <span class="option-text">美化网页</span>
+                        <span class="option-text">凯尔特人</span>
                     </div>
                     <div class="option" data-value="B">
                         <span class="option-label">B</span>
-                        <span class="option-text">添加网页交互功能</span>
+                        <span class="option-text">罗马人</span>
                     </div>
                     <div class="option" data-value="C">
                         <span class="option-label">C</span>
-                        <span class="option-text">创建数据库</span>
+                        <span class="option-text">埃及人</span>
                     </div>
                     <div class="option" data-value="D">
                         <span class="option-label">D</span>
-                        <span class="option-text">设计图片</span>
+                        <span class="option-text">维京人</span>
                     </div>
                 </div>
             </div>
             
             <!-- 题目4 -->
             <div class="question-card" id="question-4">
-                <div class="question-number">问题 4</div>
-                <div class="question-text">以下哪个不是JavaScript框架？</div>
+                <div class="question-number">恐怖问题 4</div>
+                <div class="question-text">在恐怖电影中，哪部电影以水晶湖为背景，主角是杰森？</div>
                 <div class="options">
                     <div class="option" data-value="A">
                         <span class="option-label">A</span>
-                        <span class="option-text">React</span>
+                        <span class="option-text">《月光光心慌慌》</span>
                     </div>
                     <div class="option" data-value="B">
                         <span class="option-label">B</span>
-                        <span class="option-text">Vue</span>
+                        <span class="option-text">《猛鬼街》</span>
                     </div>
                     <div class="option" data-value="C">
                         <span class="option-label">C</span>
-                        <span class="option-text">Angular</span>
+                        <span class="option-text">《十三号星期五》</span>
                     </div>
                     <div class="option" data-value="D">
                         <span class="option-label">D</span>
-                        <span class="option-text">Django</span>
+                        <span class="option-text">《电锯惊魂》</span>
                     </div>
                 </div>
             </div>
             
             <!-- 题目5 -->
             <div class="question-card" id="question-5">
-                <div class="question-number">问题 5</div>
-                <div class="question-text">响应式网页设计主要使用什么CSS技术？</div>
+                <div class="question-number">恐怖问题 5</div>
+                <div class="question-text">根据民间传说，满月时哪种生物会变形？</div>
                 <div class="options">
                     <div class="option" data-value="A">
                         <span class="option-label">A</span>
-                        <span class="option-text">Flexbox和Grid</span>
+                        <span class="option-text">吸血鬼</span>
                     </div>
                     <div class="option" data-value="B">
                         <span class="option-label">B</span>
-                        <span class="option-text">jQuery动画</span>
+                        <span class="option-text">木乃伊</span>
                     </div>
                     <div class="option" data-value="C">
                         <span class="option-label">C</span>
-                        <span class="option-text">Canvas绘图</span>
+                        <span class="option-text">狼人</span>
                     </div>
                     <div class="option" data-value="D">
                         <span class="option-label">D</span>
-                        <span class="option-text">PHP脚本</span>
+                        <span class="option-text">幽灵</span>
                     </div>
                 </div>
             </div>
@@ -568,7 +805,7 @@
         
         <!-- 结果页面 -->
         <div class="result-container" id="result-container">
-            <h2 class="result-title">测验完成!</h2>
+            <h2 class="result-title">挑战完成!</h2>
             <div class="score" id="final-score">0/5</div>
             <p class="result-message" id="result-message"></p>
             
@@ -577,12 +814,12 @@
                 <div id="answers-details"></div>
             </div>
             
-            <button class="btn-restart" id="restart-btn">重新开始测验</button>
+            <button class="btn-restart" id="restart-btn">再次挑战</button>
         </div>
     </div>
 
     <footer>
-        <p>部署在 GitHub Pages | 使用纯HTML/CSS/JavaScript构建</p>
+        <p>万圣节特别版 | 恐怖主题答题网站</p>
     </footer>
 
     <script>
@@ -590,52 +827,52 @@
         const questions = [
             {
                 id: 1,
-                question: "HTML是什么的缩写？",
+                question: "在万圣节传说中，哪种生物害怕大蒜和十字架？",
                 options: [
-                    { text: "超文本标记语言", correct: true },
-                    { text: "高性能传输模块", correct: false },
-                    { text: "高级文本管理器", correct: false },
-                    { text: "主页标记语言", correct: false }
+                    { text: "狼人", correct: false },
+                    { text: "吸血鬼", correct: true },
+                    { text: "僵尸", correct: false },
+                    { text: "女巫", correct: false }
                 ]
             },
             {
                 id: 2,
-                question: "CSS的主要作用是什么？",
+                question: "\"Trick or Treat\" 在万圣节的传统含义是什么？",
                 options: [
-                    { text: "定义网页内容", correct: false },
-                    { text: "控制网页样式和布局", correct: true },
-                    { text: "添加交互功能", correct: false },
-                    { text: "存储数据", correct: false }
+                    { text: "不给糖就捣蛋", correct: true },
+                    { text: "魔法或恶作剧", correct: false },
+                    { text: "糖果或诅咒", correct: false },
+                    { text: "面具或惊吓", correct: false }
                 ]
             },
             {
                 id: 3,
-                question: "JavaScript主要用于什么？",
+                question: "万圣节起源于哪个古老民族的节日？",
                 options: [
-                    { text: "美化网页", correct: false },
-                    { text: "添加网页交互功能", correct: true },
-                    { text: "创建数据库", correct: false },
-                    { text: "设计图片", correct: false }
+                    { text: "凯尔特人", correct: true },
+                    { text: "罗马人", correct: false },
+                    { text: "埃及人", correct: false },
+                    { text: "维京人", correct: false }
                 ]
             },
             {
                 id: 4,
-                question: "以下哪个不是JavaScript框架？",
+                question: "在恐怖电影中，哪部电影以水晶湖为背景，主角是杰森？",
                 options: [
-                    { text: "React", correct: false },
-                    { text: "Vue", correct: false },
-                    { text: "Angular", correct: false },
-                    { text: "Django", correct: true }
+                    { text: "《月光光心慌慌》", correct: false },
+                    { text: "《猛鬼街》", correct: false },
+                    { text: "《十三号星期五》", correct: true },
+                    { text: "《电锯惊魂》", correct: false }
                 ]
             },
             {
                 id: 5,
-                question: "响应式网页设计主要使用什么CSS技术？",
+                question: "根据民间传说，满月时哪种生物会变形？",
                 options: [
-                    { text: "Flexbox和Grid", correct: true },
-                    { text: "jQuery动画", correct: false },
-                    { text: "Canvas绘图", correct: false },
-                    { text: "PHP脚本", correct: false }
+                    { text: "吸血鬼", correct: false },
+                    { text: "木乃伊", correct: false },
+                    { text: "狼人", correct: true },
+                    { text: "幽灵", correct: false }
                 ]
             }
         ];
@@ -689,6 +926,9 @@
             nextBtn.addEventListener('click', goToNextQuestion);
             submitBtn.addEventListener('click', showResults);
             restartBtn.addEventListener('click', restartQuiz);
+            
+            // 添加万圣节音效
+            addHalloweenSounds();
         }
         
         // 更新进度
@@ -774,13 +1014,13 @@
             
             // 根据得分显示不同消息
             if (score === questions.length) {
-                resultMessageEl.textContent = "太棒了！你得了满分！你是真正的Web开发专家！";
+                resultMessageEl.textContent = "太可怕了！你得了满分！你对恐怖知识了如指掌！";
             } else if (score >= questions.length * 0.7) {
-                resultMessageEl.textContent = "做得很好！你对Web开发有很好的理解。";
+                resultMessageEl.textContent = "令人毛骨悚然！你对恐怖传说很有研究！";
             } else if (score >= questions.length * 0.5) {
-                resultMessageEl.textContent = "不错！继续学习，你会越来越好的。";
+                resultMessageEl.textContent = "还不错！但你需要更多的恐怖知识来应对万圣节！";
             } else {
-                resultMessageEl.textContent = "别灰心！多学习一些Web开发知识，下次会更好！";
+                resultMessageEl.textContent = "别害怕！多了解一些恐怖传说，下次会更好！";
             }
             
             // 显示答题详情
@@ -804,8 +1044,8 @@
                         </div>
                         <div>
                             ${isCorrect ? 
-                                '<span style="color: var(--success);">✓ 正确</span>' : 
-                                `<span style="color: var(--danger);">✗ 错误 (正确答案: ${correctValue})</span>`
+                                '<span style="color: var(--green);">✓ 正确</span>' : 
+                                `<span style="color: var(--blood);">✗ 错误 (正确答案: ${correctValue})</span>`
                             }
                         </div>
                     </div>
@@ -840,6 +1080,69 @@
             
             updateProgress();
             updateNavigation();
+        }
+        
+        // 添加万圣节音效
+        function addHalloweenSounds() {
+            // 创建音频上下文
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            if (AudioContext) {
+                const audioCtx = new AudioContext();
+                
+                // 为选项点击添加音效
+                document.querySelectorAll('.option').forEach(option => {
+                    option.addEventListener('click', function() {
+                        playSpookySound(audioCtx);
+                    });
+                });
+                
+                // 为按钮点击添加音效
+                document.querySelectorAll('button').forEach(button => {
+                    button.addEventListener('click', function() {
+                        if (!this.disabled) {
+                            playButtonSound(audioCtx);
+                        }
+                    });
+                });
+            }
+        }
+        
+        // 播放恐怖音效
+        function playSpookySound(audioCtx) {
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(300, audioCtx.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.3);
+            
+            gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+            
+            oscillator.start(audioCtx.currentTime);
+            oscillator.stop(audioCtx.currentTime + 0.3);
+        }
+        
+        // 播放按钮音效
+        function playButtonSound(audioCtx) {
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            
+            oscillator.type = 'sawtooth';
+            oscillator.frequency.setValueAtTime(150, audioCtx.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(80, audioCtx.currentTime + 0.2);
+            
+            gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);
+            
+            oscillator.start(audioCtx.currentTime);
+            oscillator.stop(audioCtx.currentTime + 0.2);
         }
         
         // 初始化应用
